@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eleazar Divine • Cybersecurity Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* -------------------------
+           CSS Variables & Reset
+        -------------------------- */
+        :root {
+            --bg-main: #0a0e14;
+            --bg-secondary: #161b22;
+            --text-primary: #ffffff;
+            --text-secondary: #8b949e;
+            /* Modern colorful accents (Cyber Blue to Purple gradient) */
+            --accent-cyan: #00d2ff;
+            --accent-purple: #3a7bd5;
+            --gradient-text: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            --gradient-bg: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(58, 123, 213, 0.2));
+            --glow-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        /* Utility Class for Gradient Text */
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* -------------------------
+           Navigation
+        -------------------------- */
+        /* Modern sticky nav with blur effect */
+        header {
+            background: rgba(10, 14, 20, 0.85); /* Semi-transparent */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            opacity: 0.8;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: var(--accent-cyan);
+        }
+
+        /* -------------------------
+           HERO SECTION (New)
+        -------------------------- */
+        #hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 10%; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-intro {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 480px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient-text);
+            color: var(--bg-main);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--glow-shadow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 210, 255, 0.1);
+        }
+
+        /* Hero Image Wrapper */
+        .hero-image-container {
+            position: relative;
+            width: 45%;
+            height: 600px;
+            display: flex;
+            align-items: flex-end; /* Align image to bottom */
+            justify-content: center;
+            z-index: 1;
+        }
+
+        /* Colorful blob behind the image */
+        .hero-blob {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-bg);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            /* Slight drop shadow to separate image from blob */
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
+        }
+
+        /* -------------------------
+           General Sections
+        -------------------------- */
+        section {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        /* Subtle line under headings */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-text);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        /* -------------------------
+           Modern Cards
+        -------------------------- */
+        .card {
+            background: var(--bg-secondary);
+            padding: 50px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Card Hover Effect - Colorful border glow */
+        .card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px -10px rgba(0, 210, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Top gradient line on cards */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-text);
+            opacity: 0.7;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+        }
+
+        /* -------------------------
+           Video Embeds
+        -------------------------- */
+        .video-box iframe, .video-grid iframe {
+            width: 100%;
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .video-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .video-box iframe {
+            max-width: 800px;
+            height: 450px;
+        }
+
+        .video-grid {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .video-grid iframe {
+            height: 300px;
+        }
+
+        /* -------------------------
+           Contact Section
+        -------------------------- */
+        .contact-container {
+            text-align: center;
+        }
+        
+        .contact-link {
+            display: inline-block;
+            margin: 0 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .contact-link span {
+             background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+             transition: 0.3s;
+        }
+        
+        .contact-link:hover span {
+            text-shadow: var(--glow-shadow);
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #21262d;
+            margin-top: 50px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsiveness for Hero Section */
+        @media (max-width: 900px) {
+            header {
+                padding: 15px;
+            }
+            nav {
+                gap: 15px;
+            }
+            nav a {
+                font-size: 0.85rem;
+            }
+            #hero {
+                flex-direction: column-reverse; /* Image on top on mobile */
+                padding: 100px 20px 50px;
+                text-align: center;
+                min-height: auto;
+            }
+            .hero-image-container {
+                width: 100%;
+                height: 400px;
+                margin-bottom: 30px;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                margin: 0 auto 30px auto;
+            }
+            .hero-btns {
+                justify-content: center;
+            }
+             .video-box iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-logo gradient-text">Eleazar Divine</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#pitch">Pitch</a>
+            <a href="#projects">Projects</a>
+            <a href="#value">Value</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <span class="hero-intro">Hello, I'm</span>
+            <h1 class="hero-title">Eleazar <span class="gradient-text">Divine</span></h1>
+            <p class="hero-subtitle">
+                A rising cybersecurity analyst focused on digital safety, ethical hacking, and network defense.
+            </p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+
+        <div class="hero-image-container">
+            <div class="hero-blob"></div>
+            <img src="assets/IMG_20251109_200658_168-removebg-preview.png" alt="Eleazar Divine" class="hero-img" />
+        </div>
+    </section>
+
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="card">
+            <p>
+                Eleazar Divine is a rising cybersecurity student focused on digital safety, ethical technology practices, and practical problem-solving. 
+                They are building strong foundational skills in network defense, threat analysis, and security best practices, with aspirations to grow 
+                into roles in incident response, security operations, and ethical hacking. 
+            </p>
+            <p>
+                Divine has already completed introductory cybersecurity coursework, developed small security projects, and demonstrated strong analytical and communication abilities. With a commitment to continuous learning 
+                and responsible tech use, they are preparing to make a meaningful impact in the cybersecurity field.
+            </p>
+        </div>
+    </section>
+
+    <section id="pitch">
+        <h2 class="section-title">My Pitch Video</h2>
+        <div class="video-box">
+            <iframe src="https://www.youtube.com/embed/KpCFpHkSLic" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="card">
+            <h3 style="color: var(--accent-cyan);">Tourism Recommendation App</h3>
+            <p style="margin-top: 15px;">
+                We noticed an untapped space in the "TOURISM" industry and we jumped in by creating an app that recommends personalized places to visit 
+                based on individual preferences, utilizing data analysis to suggest optimal locations.
+            </p>
+
+            <h3 style="margin-top: 45px; text-align:center;">Project Demos</h3>
+            <div class="video-grid">
+                <iframe src="https://www.youtube.com/embed/KpCFpHkSLic" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/zY83d8UYMzk" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="value">
+        <h2 class="section-title">What I Bring</h2>
+        <div class="card" style="text-align: center;">
+            <p>
+                I bring value to employers by helping enhance security, reduce risks, and support safer digital systems through careful monitoring, 
+                documentation, and strong teamwork. My contributions make daily operations smoother by identifying issues early and helping prevent 
+                small problems from becoming big ones.
+            </p>
+            <div style="margin-top: 35px; padding: 30px; background: rgba(0, 210, 255, 0.05); border-radius: 12px;">
+                <h3 class="gradient-text" style="margin-bottom: 15px;">Ready to collaborate?</h3>
+                <p style="font-weight: 600;">
+                    What I’d love from you is the chance to learn, contribute, and grow.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-container">
+            <a href="mailto:eleazardivinechimdindu@gmail.com" class="contact-link">
+                <span>Email Me</span>
+            </a>
+             <a href="https://www.linkedin.com/in/eleazar-divine-592838362/" target="_blank" class="contact-link">
+                <span>LinkedIn Profile</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        © 2025 Eleazar Divine • Cyber Portfolio
+    </footer>
+
+</body>
+</html>
